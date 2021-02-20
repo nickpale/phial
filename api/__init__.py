@@ -3,6 +3,8 @@ import os
 from flask import Flask
 
 from . import hello
+from . import doigas
+
 
 def create_app(test_config=None):
     ''' create and configure the app '''
@@ -27,8 +29,10 @@ def create_app(test_config=None):
 
     app.register_blueprint(hello.bp)
 
-    @app.route('/doigas')
-    def doigas():
-        return 'Oh boy, here we go'
+    app.register_blueprint(doigas.bp)
+
+    #@app.route('/doigas')
+    #def doigas():
+    #    return 'Oh boy, here we go'
 
     return app
