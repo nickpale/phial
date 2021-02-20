@@ -27,5 +27,9 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
+    
+    @app.route('/doigas')
+    def doigas():
+        return 'Oh boy, here we go'
 
     return app
