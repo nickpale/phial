@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 
+from . import hello
 
 def create_app(test_config=None):
     ''' create and configure the app '''
@@ -24,10 +25,8 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-    
+    app.register_blueprint(hello.bp)
+
     @app.route('/doigas')
     def doigas():
         return 'Oh boy, here we go'
