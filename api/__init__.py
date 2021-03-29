@@ -31,8 +31,7 @@ def create_app(test_config=None):
 
     app.register_blueprint(doigas.bp)
 
-    #@app.route('/doigas')
-    #def doigas():
-    #    return 'Oh boy, here we go'
+    from . import db
+    db.init_app(app)
 
     return app
