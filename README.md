@@ -26,6 +26,7 @@ For Linux and Mac:
 ```bash
 export FLASK_APP=api
 export FLASK_ENV=development
+flask init-db
 flask run
 ```
 
@@ -34,6 +35,7 @@ For Windows cmd, use set instead of export:
 ```bash
 set FLASK_APP=api
 set FLASK_ENV=development
+flask init-db
 flask run
 ```
 
@@ -42,5 +44,6 @@ For Windows PowerShell, use $env: instead of export:
 ```bash
 $env:FLASK_APP = "api"
 $env:FLASK_ENV = "development"
+flask init-db
 flask run
 ```

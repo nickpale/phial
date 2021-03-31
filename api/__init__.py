@@ -3,7 +3,6 @@ import os
 from flask import Flask
 
 from . import hello
-from . import doigas
 
 
 def create_app(test_config=None):
@@ -29,7 +28,8 @@ def create_app(test_config=None):
 
     app.register_blueprint(hello.bp)
 
-    app.register_blueprint(doigas.bp)
+    from . import auth
+    app.register_blueprint(auth.bp)
 
     from . import db
     db.init_app(app)
