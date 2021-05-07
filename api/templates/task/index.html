@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Tasks{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('task.create') }}">New</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for task in tasks %}
+    <article class="task">
+      <header>
+        <div>
+          <h1>{{ task['title'] }}</h1>
+          <div class="about">by {{ task['username'] }} recorded {{ task['createdDate'] }}</div>
+        </div>
+        {% if False %}
+          <a class="action" href="{{ url_for('task.update', id=task['taskID']) }}">Edit</a>
+        {% endif %}
+      </header>
+      <p class="body">{{ task['description'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
