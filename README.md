@@ -8,7 +8,7 @@ This is an app for keeping track of tasks, projects, and skills. Use tasks as bu
     - venv/ is in the .gitignore so you can make a virtual environment called venv in the project root or put it in a directory called venv. Keeping your virtual environment outside of the project works too. Whatever suits you.
     - `python -m venv venv`
 
-3. Activate your virtual environment.
+3. Activate your virtual environment ;)
     - For Linux and Mac:
 
         `./venv/bin/activate`
