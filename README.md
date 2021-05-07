@@ -20,14 +20,16 @@ This is an app for keeping track of tasks, projects, and skills. Use tasks as bu
 4. Install dependencies.
     - `pip install -r requirements.txt`
 
+5. Initialize Database
+    - `flask init-db`
+    - `flask run`
+
 ## Run Development Server
 For Linux and Mac:
 
 ```bash
 export FLASK_APP=api
 export FLASK_ENV=development
-flask init-db
-flask run
 ```
 
 For Windows cmd, use set instead of export:
@@ -35,15 +37,11 @@ For Windows cmd, use set instead of export:
 ```bash
 set FLASK_APP=api
 set FLASK_ENV=development
-flask init-db
-flask run
 ```
 
 For Windows PowerShell, use $env: instead of export:
 
-```bash
+```PowerShell
 $env:FLASK_APP = "api"
 $env:FLASK_ENV = "development"
-flask init-db
-flask run
 ```
