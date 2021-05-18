@@ -2,15 +2,21 @@ venv/
 
 *.pyc
 __pycache__/
+api/__pycache__/
 
-instance/
+api/instance/
 
 .pytest_cache/
+api/.pytest_cache/
 .coverage
+api/.coverage
 htmlcov/
+api/htmlcov/
 
 dist/
+api/dist/
 build/
+api/build/
 *.egg-info/
 
 .vscode/
