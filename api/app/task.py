@@ -3,8 +3,8 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from api.auth import login_required
-from api.db import get_db
+from app.auth import login_required
+from app.db import get_db
 
 import uuid
 

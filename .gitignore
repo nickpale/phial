@@ -3,8 +3,14 @@ node_modules
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+*.zip
 
+.env/
 venv/
+.venv/
+api/.env/
+api/venv/
+api/.venv/
 
 *.pyc
 __pycache__/
@@ -19,10 +25,12 @@ api/.coverage
 htmlcov/
 api/htmlcov/
 
-dist/
 api/dist/
-build/
 api/build/
 *.egg-info/
 
 .vscode/
+
+*.swp
+
+.DS_Store

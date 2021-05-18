@@ -6,7 +6,7 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from api.db import get_db
+from app.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -85,7 +85,7 @@ def login_required(view):
 
         return view(**kwargs)
 
-    return wrapped_view   
+    return wrapped_view
 
 @bp.route('/logout')
 def logout():

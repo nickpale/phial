@@ -11,7 +11,7 @@ This is an app for keeping track of tasks, projects, and skills. Use tasks as bu
 3. Activate your virtual environment
     - For Linux and Mac:
 
-        `./venv/bin/activate`
+        `source ./venv/bin/activate`
 
         For Windows:
 

@@ -10,3 +10,6 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app. The build ste
  * `cdk deploy`           deploy this stack to your default AWS account/region
  * `cdk diff`             compare deployed stack with current state
  * `cdk synth`            emits the synthesized CloudFormation template
+
+## Using this guide:
+https://dev.to/raphael_jambalos/more-than-hello-world-in-lambda-build-and-deploy-flask-apis-in-aws-lambda-via-cdk-1m04
