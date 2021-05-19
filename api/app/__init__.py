@@ -4,9 +4,10 @@ from config import config
 from flask import Flask
 
 from . import hello
-from . import auth
-from . import db
-from . import task
+# from . import auth
+# from . import db
+# from . import task
+
 
 def create_app(config_name):
     ''' create and configure the app '''
@@ -19,6 +20,6 @@ def create_app(config_name):
 
     # db.init_app(app)
 
-    app.add_url_rule('/', endpoint='index')
+    # app.add_url_rule('/', endpoint='index')
 
     return app
