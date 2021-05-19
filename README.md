@@ -1,15 +1,70 @@
-# Welcome to your CDK JavaScript project!
+# phial
+This is an app for keeping track of tasks, projects, and skills. Use tasks as building blocks for all kinds of goals in your life.
 
-This is a blank project for JavaScript development with CDK.
+## API
+The API is a Flask app that can be run locally for development.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app. The build step is not required when using JavaScript.
+### Setup
+1. Install the latest version of Python
+    - https://www.python.org/
 
-## Useful commands
+2. Create a virtual environment
+    - venv/ is in the .gitignore so you can make a virtual environment called venv in the project root or put it in a directory called venv. Keeping your virtual environment outside of the project works too. Whatever suits you.
+    - `python -m venv venv/phial`
 
- * `npm run test`         perform the jest unit tests
+3. Activate your virtual environment
+    - For Linux and Mac:
+
+        `source ./venv/phial/bin/activate`
+
+        For Windows:
+
+        `venv\phial\Scripts\activate`
+
+4. Install dependencies
+    - `pip install -r api/requirements.txt`
+
+### Run Development Server
+1. ```bash
+    cd api
+    ```
+2. For Linux and Mac:
+
+    ```bash
+    export FLASK_APP=main.py
+    export FLASK_CONFIG="development"
+    export FLASK_DEBUG=1
+    ```
+
+    For Windows cmd, use set instead of export:
+
+    ```bash
+    set FLASK_APP=main.py
+    set FLASK_CONFIG="development"
+    set FLASK_DEBUG=1
+    ```
+
+    For Windows PowerShell, use $env: instead of export:
+
+    ```PowerShell
+    $env:FLASK_APP = "main.py"
+    $env:FLASK_CONFIG = "development"
+    $env:FLASK_DEBUG = "1"
+    ```
+
+2. ```bash
+    flask run
+    ```
+
+
+## Deploy with AWS CDK
+
+Use Amazon Web Services Cloud Development Kit to deploy this app to the cloud.
+
+The `cdk.json` file tells the CDK Toolkit how to execute the app.
+
+### Useful commands
+
  * `cdk deploy`           deploy this stack to your default AWS account/region
  * `cdk diff`             compare deployed stack with current state
  * `cdk synth`            emits the synthesized CloudFormation template
-
-## Using this guide:
-https://dev.to/raphael_jambalos/more-than-hello-world-in-lambda-build-and-deploy-flask-apis-in-aws-lambda-via-cdk-1m04
