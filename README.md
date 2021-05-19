@@ -61,8 +61,6 @@ The API is a Flask app that can be run locally for development.
 
 Use Amazon Web Services Cloud Development Kit to deploy this app to the cloud.
 
-The `cdk.json` file tells the CDK Toolkit how to execute the app.
-
 ### Useful commands
 
  * `cdk deploy`           deploy this stack to your default AWS account/region
