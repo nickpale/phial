@@ -66,3 +66,5 @@ Use Amazon Web Services Cloud Development Kit to deploy this app to the cloud.
  * `cdk deploy`           deploy this stack to your default AWS account/region
  * `cdk diff`             compare deployed stack with current state
  * `cdk synth`            emits the synthesized CloudFormation template
+
+API piece inspired by https://github.com/cdk-patterns/serverless/tree/main/the-lambda-trilogy
