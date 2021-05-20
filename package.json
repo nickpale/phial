@@ -1,23 +1,14 @@
 {
   "name": "phial",
   "version": "0.1.0",
-  "bin": {
-    "phial": "bin/phial.js"
-  },
+  "description": "An app to keep track of time and goals via tasks",
   "scripts": {
-    "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
-    "cdk": "cdk",
-    "test": "jest"
+    "buildsite": "cd site && npm i && npm run build && cd ../",
+    "buildcdk": "cd cdk && npm i && npm run build && cd ../",
+    "build": "npm run buildsite && npm run buildcdk",
+    "deploy": "npm run build && cd cdk && npm run deploy",
+    "test": "echo \"no ci/cd tests setup\""
   },
-  "devDependencies": {
-    "@aws-cdk/assert": "1.104.0",
-    "aws-cdk": "1.104.0",
-    "jest": "^26.4.2"
-  },
-  "dependencies": {
-    "@aws-cdk/aws-apigateway": "^1.104.0",
-    "@aws-cdk/aws-lambda": "^1.104.0",
-    "@aws-cdk/aws-s3": "^1.104.0",
-    "@aws-cdk/core": "1.104.0"
-  }
+  "author": "nickpale and colefordays",
+  "license": "MIT"
 }
