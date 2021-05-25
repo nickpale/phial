@@ -1,0 +1,14 @@
+{
+  "name": "phial",
+  "version": "0.1.0",
+  "description": "An app to keep track of time and goals via tasks",
+  "scripts": {
+    "buildsite": "cd site && npm i && npm run build && cd ../",
+    "buildcdk": "cd cdk && npm i && npm run build && cd ../",
+    "build": "npm run buildsite && npm run buildcdk",
+    "deploy": "npm run build && cd cdk && npm run deploy",
+    "test": "echo \"no ci/cd tests setup\""
+  },
+  "author": "nickpale and colefordays",
+  "license": "MIT"
+}

@@ -1,47 +1,76 @@
 # phial
 This is an app for keeping track of tasks, projects, and skills. Use tasks as building blocks for all kinds of goals in your life.
 
-## Setup
+## API
+The API is a Flask app that can be run locally for development.
+
+### Setup
 1. Install the latest version of Python
     - https://www.python.org/
+
 2. Create a virtual environment
     - venv/ is in the .gitignore so you can make a virtual environment called venv in the project root or put it in a directory called venv. Keeping your virtual environment outside of the project works too. Whatever suits you.
-    - `python -m venv venv`
+    - `python -m venv venv/phial`
 
 3. Activate your virtual environment
     - For Linux and Mac:
 
-        `./venv/bin/activate`
+        `source ./venv/phial/bin/activate`
 
         For Windows:
 
-        `venv\Scripts\activate`
+        `venv\phial\Scripts\activate`
 
 4. Install dependencies
-    - `pip install -r requirements.txt`
+    - `pip install -r api/requirements.txt`
 
-5. Initialize Database
-    - `flask init-db`
-    - `flask run`
+### Run Development Server
+1. ```bash
+    cd api
+    ```
+2. For Linux and Mac:
 
-## Run Development Server
-For Linux and Mac:
+    ```bash
+    export FLASK_APP=main.py
+    export FLASK_CONFIG="development"
+    export FLASK_DEBUG=1
+    ```
 
-```bash
-export FLASK_APP=api
-export FLASK_ENV=development
-```
+    For Windows cmd, use set instead of export:
 
-For Windows cmd, use set instead of export:
+    ```bash
+    set FLASK_APP=main.py
+    set FLASK_CONFIG="development"
+    set FLASK_DEBUG=1
+    ```
 
-```bash
-set FLASK_APP=api
-set FLASK_ENV=development
-```
+    For Windows PowerShell, use $env: instead of export:
 
-For Windows PowerShell, use $env: instead of export:
+    ```PowerShell
+    $env:FLASK_APP = "main.py"
+    $env:FLASK_CONFIG = "development"
+    $env:FLASK_DEBUG = "1"
+    ```
 
-```PowerShell
-$env:FLASK_APP = "api"
-$env:FLASK_ENV = "development"
-```
+2. ```bash
+    flask run
+    ```
+
+
+## Deploy with AWS CDK
+
+Use Amazon Web Services Cloud Development Kit to deploy this app to the cloud.
+
+### Useful commands
+
+ * `cdk deploy`           deploy this stack to your default AWS account/region
+ * `cdk diff`             compare deployed stack with current state
+ * `cdk synth`            emits the synthesized CloudFormation template
+
+### Required environment variables for PhialStack
+
+ * CDK_DEFAULT_ACCOUNT - 000000000000
+ * CDK_DEFAULT_REGION - us-east-1
+ * CDK_HOSTED_ZONE_NAME - example.com
+
+API piece inspired by https://github.com/cdk-patterns/serverless/tree/main/the-lambda-trilogy
