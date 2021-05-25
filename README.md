@@ -67,4 +67,10 @@ Use Amazon Web Services Cloud Development Kit to deploy this app to the cloud.
  * `cdk diff`             compare deployed stack with current state
  * `cdk synth`            emits the synthesized CloudFormation template
 
+### Required environment variables for PhialStack
+
+ * CDK_DEFAULT_ACCOUNT - 000000000000
+ * CDK_DEFAULT_REGION - us-east-1
+ * CDK_HOSTED_ZONE_NAME - example.com
+
 API piece inspired by https://github.com/cdk-patterns/serverless/tree/main/the-lambda-trilogy

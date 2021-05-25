@@ -4,21 +4,22 @@ const route53 = require("@aws-cdk/aws-route53");
 const targets = require("@aws-cdk/aws-route53-targets");
 const apigateway = require("@aws-cdk/aws-apigateway");
 const lambda = require("@aws-cdk/aws-lambda");
-// const s3 = require('@aws-cdk/aws-s3');
 const spa = require("cdk-spa-deploy");
 
 class PhialStack extends core.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    const hostedZoneName = "timephial.com";
+    const hostedZoneName = process.env.CDK_HOSTED_ZONE_NAME;
+
+    const apiDomainName = "api." + hostedZoneName;
 
     const phialHostedZone = route53.HostedZone.fromLookup(this, "HostedZone", {
       domainName: hostedZoneName,
     });
 
     const phialAPICertificate = new acm.Certificate(this, "APICertificate", {
-      domainName: "api.timephial.com",
+      domainName: apiDomainName,
       validation: acm.CertificateValidation.fromDns(phialHostedZone),
     });
 
@@ -48,7 +49,7 @@ class PhialStack extends core.Stack {
       description: "This is the gateway to the phial api",
       handler: flaskApp,
       domainName: {
-        domainName: "api.timephial.com",
+        domainName: apiDomainName,
         certificate: phialAPICertificate,
       },
     });
@@ -56,7 +57,7 @@ class PhialStack extends core.Stack {
     new route53.ARecord(this, "PhialAPIAliasRecord", {
       zone: phialHostedZone,
       target: route53.RecordTarget.fromAlias(new targets.ApiGateway(phialAPI)),
-      recordName: "api.timephial.com",
+      recordName: apiDomainName,
     });
   }
 }
