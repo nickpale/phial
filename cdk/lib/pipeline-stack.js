@@ -35,6 +35,7 @@ class PipelineStack extends Stack {
 
     const sourceOutput = new codepipeline.Artifact();
     const cdkBuildOutput = new codepipeline.Artifact('CdkBuildOutput');
+    const lambdaBuildOutput = new codepipeline.Artifact('LambdaBuildOutput')
     new codepipeline.Pipeline(this, 'Pipeline', {
       stages: [
         {

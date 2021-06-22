@@ -1,10 +1,11 @@
-const core = require("@aws-cdk/core");
 const acm = require("@aws-cdk/aws-certificatemanager");
-const route53 = require("@aws-cdk/aws-route53");
-const targets = require("@aws-cdk/aws-route53-targets");
 const apigateway = require("@aws-cdk/aws-apigateway");
+const core = require("@aws-cdk/core");
 const lambda = require("@aws-cdk/aws-lambda");
+const path = require("path");
+const route53 = require("@aws-cdk/aws-route53");
 const spa = require("cdk-spa-deploy");
+const targets = require("@aws-cdk/aws-route53-targets");
 
 class PhialStack extends core.Stack {
   constructor(scope, id, props) {
@@ -24,12 +25,12 @@ class PhialStack extends core.Stack {
     new spa.SPADeploy(this, "PhialSite").createSiteFromHostedZone({
       zoneName: props.hostedZoneName,
       indexDoc: "index.html",
-      websiteFolder: "../site/build",
+      websiteFolder: path.join(__dirname, "../../site/build"),
     });
 
     const flaskApp = new lambda.Function(this, "PhialFlask", {
       runtime: lambda.Runtime.PYTHON_3_8,
-      code: lambda.Code.fromAsset("../api", {
+      code: lambda.Code.fromAsset(path.join(__dirname, "../../api"), {
         bundling: {
           image: lambda.Runtime.PYTHON_3_8.bundlingImage,
           command: [
