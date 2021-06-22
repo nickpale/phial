@@ -10,12 +10,10 @@ class PhialStack extends core.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    const hostedZoneName = process.env.CDK_HOSTED_ZONE_NAME;
-
-    const apiDomainName = "api." + hostedZoneName;
+    const apiDomainName = "api." + props.hostedZoneName;
 
     const phialHostedZone = route53.HostedZone.fromLookup(this, "HostedZone", {
-      domainName: hostedZoneName,
+      domainName: props.hostedZoneName,
     });
 
     const phialAPICertificate = new acm.Certificate(this, "APICertificate", {
@@ -24,7 +22,7 @@ class PhialStack extends core.Stack {
     });
 
     new spa.SPADeploy(this, "PhialSite").createSiteFromHostedZone({
-      zoneName: hostedZoneName,
+      zoneName: props.hostedZoneName,
       indexDoc: "index.html",
       websiteFolder: "../site/build",
     });

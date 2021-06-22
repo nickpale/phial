@@ -1,9 +1,9 @@
-import * as codebuild from '@aws-cdk/aws-codebuild';
-import * as codepipeline from '@aws-cdk/aws-codepipeline';
-import * as codepipeline_actions from '@aws-cdk/aws-codepipeline-actions';
-import { SecretValue, Stack } from '@aws-cdk/core';
+const codebuild = require('@aws-cdk/aws-codebuild');
+const codepipeline = require('@aws-cdk/aws-codepipeline');
+const codepipeline_actions = require('@aws-cdk/aws-codepipeline-actions');
+const { SecretValue, Stack } = require('@aws-cdk/core');
 
-export class PipelineStack extends Stack {
+class PipelineStack extends Stack {
   constructor(app, id, props) {
     super(app, id, props);
 
@@ -44,7 +44,7 @@ export class PipelineStack extends Stack {
                 actionName: 'GitHub',
                 branch: props.githubBranch,
                 output: sourceOutput,
-                oauthToken: SecretValue.secretsManager('github-token'),
+                oauthToken: SecretValue.secretsManager('phial-github-token'),
                 owner: props.githubOwner,
                 repo: props.githubRepo,
             }),
@@ -67,7 +67,7 @@ export class PipelineStack extends Stack {
             new codepipeline_actions.CloudFormationCreateUpdateStackAction({
               actionName: 'Lambda_CFN_Deploy',
               templatePath: cdkBuildOutput.atPath('PhialStack.template.json'),
-              stackName: 'PhialDeploymentStack',
+              stackName: 'PhialStack',
               adminPermissions: true,
               parameterOverrides: {
                 ...props.lambdaCode.assign(lambdaBuildOutput.s3Location),
@@ -80,3 +80,5 @@ export class PipelineStack extends Stack {
     });
   }
 }
+
+module.exports = { PipelineStack };

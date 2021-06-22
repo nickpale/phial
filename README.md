@@ -71,6 +71,9 @@ Use Amazon Web Services Cloud Development Kit to deploy this app to the cloud.
 
  * CDK_DEFAULT_ACCOUNT - 000000000000
  * CDK_DEFAULT_REGION - us-east-1
- * CDK_HOSTED_ZONE_NAME - example.com
+ * PHIAL_CDK_HOSTED_ZONE_NAME - example.com
+ * PHIAL_GITHUB_BRANCH - develop
+ * PHIAL_GITHUB_OWNER - username
+ * PHIAL_GITHUB_REPO - phial
 
 API piece inspired by https://github.com/cdk-patterns/serverless/tree/main/the-lambda-trilogy
