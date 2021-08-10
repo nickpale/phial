@@ -4,6 +4,7 @@ node_modules
 cdk/cdk.context.json
 cdk/.env
 .cdk.staging
+cdk/cdk.out
 cdk.out
 *.zip
 
