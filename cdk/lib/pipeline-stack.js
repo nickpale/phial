@@ -30,6 +30,7 @@ class PipelineStack extends Stack {
       }),
       environment: {
         buildImage: codebuild.LinuxBuildImage.STANDARD_5_0,
+        privileged: true,
       },
     });
 
@@ -42,12 +43,12 @@ class PipelineStack extends Stack {
           stageName: 'Source',
           actions: [
             new codepipeline_actions.GitHubSourceAction({
-                actionName: 'GitHub',
-                branch: props.githubBranch,
-                output: sourceOutput,
-                oauthToken: SecretValue.secretsManager('phial-github-token'),
-                owner: props.githubOwner,
-                repo: props.githubRepo,
+              actionName: 'GitHub',
+              branch: props.githubBranch,
+              output: sourceOutput,
+              oauthToken: SecretValue.secretsManager('phial-github-token'),
+              owner: props.githubOwner,
+              repo: props.githubRepo,
             }),
           ],
         },

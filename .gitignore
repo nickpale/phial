@@ -2,6 +2,7 @@ node_modules
 
 # CDK asset staging directory
 cdk/cdk.context.json
+cdk/.env
 .cdk.staging
 cdk.out
 *.zip

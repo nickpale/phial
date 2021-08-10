@@ -1,6 +1,7 @@
 const acm = require("@aws-cdk/aws-certificatemanager");
 const apigateway = require("@aws-cdk/aws-apigateway");
 const core = require("@aws-cdk/core");
+const { AttributeType, Table } = require("@aws-cdk/aws-dynamodb");
 const lambda = require("@aws-cdk/aws-lambda");
 const path = require("path");
 const route53 = require("@aws-cdk/aws-route53");
@@ -10,6 +11,18 @@ const targets = require("@aws-cdk/aws-route53-targets");
 class PhialStack extends core.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
+
+    const dynamoTable = new Table(this, 'phial', {
+      partitionKey: {
+        name: 'pk',
+        type: AttributeType.STRING
+      },
+      sortKey: {
+        name: 'sk',
+        type: AttributeType.STRING
+      },
+      tableName: 'phial'
+    })
 
     const apiDomainName = "api." + props.hostedZoneName;
 
@@ -40,8 +53,13 @@ class PhialStack extends core.Stack {
           ],
         },
       }),
+      environment: {
+        TABLE_NAME: dynamoTable.tableName,
+      },
       handler: "main.handler",
     });
+
+    dynamoTable.grantReadWriteData(flaskApp);
 
     const phialAPI = new apigateway.LambdaRestApi(this, "PhialAPI", {
       restApiName: "Phial API",

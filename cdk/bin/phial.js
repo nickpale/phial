@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+require("dotenv").config();
 const cdk = require("@aws-cdk/core");
 const { PhialStack } = require("../lib/phial-stack");
 const { PipelineStack } = require("../lib/pipeline-stack");
