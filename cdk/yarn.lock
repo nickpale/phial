@@ -247,7 +247,7 @@
     "@aws-cdk/core" "1.117.0"
     constructs "^3.3.69"
 
-"@aws-cdk/aws-cognito@1.117.0":
+"@aws-cdk/aws-cognito@1.117.0", "@aws-cdk/aws-cognito@^1.117.0":
   version "1.117.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cognito/-/aws-cognito-1.117.0.tgz#63f5309f35cbbf0164a9f2f1cb680e711914f248"
   integrity sha512-0OCRFK2MrHNg8ZlEy6OE/LNblKPx2QeSYH+7JGe6v95lQIRneozq6CEgroIfbY9QxV9M7yArZpsfYohXOqnsiQ==

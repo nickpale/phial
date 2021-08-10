@@ -1,5 +1,6 @@
 const acm = require("@aws-cdk/aws-certificatemanager");
 const apigateway = require("@aws-cdk/aws-apigateway");
+const cognito = require("@aws-cdk/aws-cognito");
 const core = require("@aws-cdk/core");
 const { AttributeType, Table } = require("@aws-cdk/aws-dynamodb");
 const lambda = require("@aws-cdk/aws-lambda");
@@ -12,17 +13,36 @@ class PhialStack extends core.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    const dynamoTable = new Table(this, 'phial', {
+    new cognito.UserPool(this, "PhialUserPool", {
+      autoVerify: {email: true}
+      selfSignUpEnabled: true,
+      signInAliases: {
+        email: true,
+        preferredUsername: true,
+        username: true,
+      },
+      userPoolName: "phial-userpool",
+      userVerification: {
+        emailSubject: "Verify your email to begin using Phial!",
+        emailBody:
+          "Thanks for signing up to use Phial! Your verification code is {####}",
+        emailStyle: cognito.VerificationEmailStyle.CODE,
+        smsMessage:
+          "Thanks for signing up to use Phial! Your verification code is {####}",
+      },
+    });
+
+    const dynamoTable = new Table(this, "PhialTable", {
       partitionKey: {
-        name: 'pk',
-        type: AttributeType.STRING
+        name: "pk",
+        type: AttributeType.STRING,
       },
       sortKey: {
-        name: 'sk',
-        type: AttributeType.STRING
+        name: "sk",
+        type: AttributeType.STRING,
       },
-      tableName: 'phial'
-    })
+      tableName: "phial",
+    });
 
     const apiDomainName = "api." + props.hostedZoneName;
 
