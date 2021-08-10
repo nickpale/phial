@@ -14,7 +14,20 @@ class PhialStack extends core.Stack {
     super(scope, id, props);
 
     new cognito.UserPool(this, "PhialUserPool", {
-      autoVerify: {email: true}
+      autoVerify: { email: true },
+      passwordPolicy: {
+        minLength: 8,
+        requireLowercase: true,
+        requireUppercase: true,
+        requireDigits: true,
+        requireSymbols: true,
+        tempPasswordValidity: Duration.days(3),
+      },
+      mfa: cognito.Mfa.OPTIONAL,
+      mfaSecondFactor: {
+        sms: true,
+        otp: true,
+      },
       selfSignUpEnabled: true,
       signInAliases: {
         email: true,
